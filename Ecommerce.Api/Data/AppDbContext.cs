@@ -16,6 +16,9 @@ public class AppDbContext: IdentityDbContext<ApplicationUser>
 
     public DbSet<CartItem> CartItems => Set<CartItem>();
 
+    public DbSet<Order> Orders => Set<Order>();
+    public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
@@ -35,7 +38,20 @@ public class AppDbContext: IdentityDbContext<ApplicationUser>
             .HasDefaultValueSql("now()");
 
         modelBuilder.Entity<CartItem>()
-            .HasIndex(ci => new {ci.UserId, ci.ProductId})        // <- ci.Product
+            .HasIndex(ci => new {ci.UserId, ci.ProductId})
             .IsUnique();
+
+        modelBuilder.Entity<Order>()
+            .Property(o => o.OrderDate)
+            .HasDefaultValueSql("now()");
+
+        modelBuilder.Entity<Order>()
+            .Property(o => o.Status)
+            .HasConversion<string>()
+            .HasMaxLength(20);
+
+        modelBuilder.Entity<OrderItem>()
+            .Property(oi => oi.LineTotal)
+            .HasComputedColumnSql("unit_price * quantity", stored: true);
     }
 }

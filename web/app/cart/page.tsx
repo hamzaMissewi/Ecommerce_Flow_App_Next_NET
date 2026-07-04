@@ -70,9 +70,12 @@ export default async function CartPage() {
               </span>
             </div>
 
-            <button className="mt-6 w-full rounded-xl bg-gray-900 px-6 py-3 font-medium text-white transition hover:bg-gray-800">
+            <Link
+              href="/checkout"
+              className="mt-6 block w-full rounded-xl bg-gray-900 px-6 py-3 text-center font-medium text-white transition hover:bg-gray-800"
+            >
               Checkout
-            </button>
+            </Link>
           </>
         )}
       </div>

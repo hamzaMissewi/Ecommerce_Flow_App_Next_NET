@@ -11,5 +11,5 @@ export function proxy(request: NextRequest){    //runs on the server before any 
 }
 //config.matcher scopes where the proxy runs
 export const config = {
-    matcher: ["/account/:path*",  "/cart/:path*" ]    // means it guards /account anything under it and leaves everything untouched
+    matcher: ["/account/:path*", "/cart/:path*", "/checkout", "/order/:path*" ]
 };

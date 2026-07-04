@@ -36,6 +36,7 @@ builder.Services
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddScoped<Ecommerce.Api.Services.TokenService>();
+builder.Services.AddScoped<Ecommerce.Api.Services.OrderService>();
 builder.Services
         .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
